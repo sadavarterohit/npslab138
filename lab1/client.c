@@ -3,15 +3,18 @@
 #include <sys/socket.h>
 #include <unistd.h>
 #include <string.h>
-#define PORT 8080
+
 int main(int argc, char const *argv[])
 
 {
-	printf("hellno world from the other side ;)");
-
+//	printf("hellno world from the other side ;)");
+	int PORT=atoi(argv[2]);
+//	
 	int sock=0,valread;
 	struct sockaddr_in serv_addr;
-	char* hello = "Hi my friend, server";
+	const char* hello[100];
+	printf("Say Something I'm giving up on you\n\n");
+	gets(hello);
 
 	char buffer[1024]={0};
 
@@ -24,7 +27,7 @@ int main(int argc, char const *argv[])
 	serv_addr.sin_family = AF_INET;
 	serv_addr.sin_port = htons(PORT);
 
-	if(inet_pton(AF_INET, "127.0.0.1", &serv_addr.sin_addr)<=0)
+	if(inet_pton(AF_INET, argv[1], &serv_addr.sin_addr)<=0)
 	{
 		printf("Address not supported");
 		return -1;
